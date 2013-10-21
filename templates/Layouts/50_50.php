@@ -1,1 +1,0 @@
-<strong>New empty Layout: Layouts/50_50.php</strong>
