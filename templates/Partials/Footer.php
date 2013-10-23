@@ -1,10 +1,10 @@
 <footer>
-	<section class="brown">
+	<section class="brown hidden-xs">
 		<div class="container">
 			<div class="row">
 				<?php
 				foreach (get_field('fußzeile', 'option') as $column) {
-					echo '<div class="col-md-4">';
+					echo '<div class="col-md-4 col-sm-4">';
 					echo '<p><img src="' . $column['bild']['sizes']['thumbnail'] . '"></p>';
 					echo $column['text'];
 					echo '</div>';

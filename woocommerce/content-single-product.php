@@ -29,12 +29,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	if (count($images) > 1) {
 		echo '
 			<div class="row productteaser hidden-xs" >
-				<div class="col-md-6">
+				<div class="col-md-6 col-sm-6">
 					<div class="imagewrapper">
 					<img src="'. $images[0]['produktbild'] .'" class=" img-responsive" alt="'. $name .'" />
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 col-sm-6">
 					<div class="imagewrapper">
 						<img src="'. $images[1]['produktbild'] .'" class="img-responsive" alt="'. $name .'" />
 					</div>
@@ -42,26 +42,29 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			</div>
 			<div class="divider">
 				<img src="'. $templatePath .'/Media/ornament.png" alt="la luna doro">
-			</div>			
+			</div>
 				';
 	} else {
 		echo '
+					<div class="divider">
+				<img src="'. $templatePath .'/Media/ornament.png" alt="la luna doro">
+			</div>
 			<div class="spacer"></div>
-		';		
+		';
 	}
 
 ?>
 
 <section class="row product">
 	<article class="productdesc">
-		<div class="col-md-4">
+		<div class="col-md-4 col-sm-4">
 				<?php
 					echo '
 					<img src="'. $images[0]['produktbild'] .'" alt="'. $name .'"  class="img-responsive"/>
 					';
 				?>
 			</div>
-			<div class="col-md-7 col-md-offset-1">
+			<div class="col-md-7 col-md-offset-1 col-sm-8">
 				<?php global $post, $product;
 					$attributes = getProductAttributes($product);
 					$sublineAttributes = array();
@@ -78,8 +81,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					<div class="content">
 						<?php echo the_content();?>
 					</div>
-					<div class="addtocart">
-						<form action="/shop/accesoires/testprodukt/?add-to-cart=175" class="cart" method="post" enctype="multipart/form-data">
+					<div class="addtocart <?php if(get_field('massanfertigung') === TRUE) { echo 'hidden'; } ?>">
+						<form action="<?php echo get_permalink($product->id); ?>" class="cart" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
 							<div class="quantity buttons_added">
 						 		<input type="button" value="-" class="minus">
 						 		<input type="number" step="1" min="1" name="quantity" value="1" title="Anz." class="input-text qty text">
@@ -97,7 +101,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 							</div>
 						</form>
 					</div>
-
 				</article>
 				<?php
 					/**
@@ -114,57 +117,66 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				?>
 		</div>
 	</article>
-	<article class="additionalinformation">
-		<div class="col-md-5">
-			<h3>Pflegehinweise</h3>
 
-			<?php
-				$materials = woocommerce_get_product_terms($product->id, 'pa_material');
-				foreach ($materials as $material) {
-					$url = get_field('detailseite', 'pa_material_' . $material->term_id);
-					$icon = get_field('icon', 'pa_material_' . $material->term_id);
-					echo '<a href="' . $url . '" title="' . $material->name . '" data-toggle="tooltip"><img src="' . $icon['sizes']['shop_thumbnail'] . '"  alt="' . $material->name . '" /></a>';
-				}
-			?>
-		</div>
-		<div class="col-md-7">
-			<h3>Daten</h3>
-			<?php $product->list_attributes(); ?>
-		</div>
-	</article>
+		<article class="additionalinformation <?php if(get_field('massanfertigung') === TRUE) { echo 'hidden'; } ?>">
+			<div class="col-md-5 col-sm-4">
+				<h3>Pflegehinweise</h3>
+
+				<?php
+					$materials = woocommerce_get_product_terms($product->id, 'pa_material');
+					foreach ($materials as $material) {
+						$url = get_field('detailseite', 'pa_material_' . $material->term_id);
+						$icon = get_field('icon', 'pa_material_' . $material->term_id);
+						echo '<a href="' . $url . '" title="' . $material->name . '" data-toggle="tooltip"><img src="' . $icon['sizes']['shop_thumbnail'] . '"  alt="' . $material->name . '" /></a>';
+					}
+				?>
+			</div>
+			<div class="col-md-7 col-sm-8">
+				<h3>Daten</h3>
+				<?php $product->list_attributes(); ?>
+			</div>
+		</article>
+	
 	<article class="support">
-		<div class="col-md-7">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, qui, voluptatem sint ipsam cupiditate earum minima cumque odit officia distinctio enim impedit doloribus illum perspiciatis quis nobis sed soluta molestiae.</p>
+		<div class="col-md-<?php if(get_field('massanfertigung') === TRUE) { echo '5'; } else { echo '7';} ?> <?php if(get_field('massanfertigung') === TRUE) { echo 'col-sm-4'; } ?>">
+			<h3>Beratung liegt uns am Herzen</h3>
+			<?php the_field('beratung', 'option'); ?>
 		</div>
-		<div class="col-md-5"></div>
+		<?php 
+			if(get_field('massanfertigung') === TRUE) { 
+				echo '<div class="col-md-7 col-sm-8">';
+				echo do_shortcode('[contact-form-7 id="207" title="Kontakt"]');
+				echo '</div>';
+			} 
+		?>	
 	</article>
 </section>
 
 
-<section class="row related">
-<h3>Das könnte Sie auch interessieren</h3>
-	<?php foreach (getRelatedProducts($product) as $relatedProduct) { ?>
-		<div class="col-md-3 singleproduct">
-			<a href="<?php echo get_permalink($relatedProduct->ID); ?>" title="<?php echo get_the_title();?>">
-				<div class="imgwrapper">
-					<?php 
-						$image = get_field('produkbilder');
-						$firstImage = $image[0];
-						$name = get_the_title();
-						
-						echo '<img src="'. $firstImage['produktbild'] .'" class="img-responsive" alt="'. $name .'" />';
-					?>
-				</div>
-				<div class="datawrapper">
-					<div class=""><h5><?php echo $relatedProduct->get_title(); ?></h5></div>
-				</div>
-			</a>
-		</div>
-	<?php } ?>
+<section class="related <?php if (getRelatedProducts($product) == FALSE) { echo 'hidden';	} ?>">
+	<h3>Das könnte Sie auch interessieren</h3>
+		<div class="row">
+		<?php foreach (getRelatedProducts($product) as $relatedProduct) { ?>
+			<div class="col-md-3  col-sm-3 singleproduct">
+				<a href="<?php echo get_permalink($relatedProduct->id); ?>" title="<?php echo get_the_title();?>">
+					<div class="imgwrapper">
+						<?php
+							$image = get_field('produkbilder', $relatedProduct->id);
+							$firstImage = $image[0];
+							$name = get_the_title();
+
+							echo '<img src="'. $firstImage['produktbild'] .'" class="img-responsive" alt="'. $name .'" />';
+						?>
+					</div>
+					<div class="datawrapper">
+						<div class=""><h5><?php echo $relatedProduct->get_title(); ?></h5></div>
+					</div>
+				</a>
+			</div>
+		<?php } ?>
+	</div>
 </section>
 
 </div><!-- #product-<?php the_ID(); ?> -->
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>
-
-

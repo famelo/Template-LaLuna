@@ -13,11 +13,12 @@
   <?php get_template_part('templates/Partials/Header'); ?>
   <div class="wrap container" role="document">
     <div class="content row">
-      <div class="main col-md-8" role="main">
+      <div class="main col-md-8 col-sm-8 col-xs-12" role="main">
         <?php Famelo_Layout::content(); ?>
       </div>
-      <div class="sidebar col-md-4">
+      <div class="sidebar col-md-4 col-sm-4 hidden-xs">
       	<?php dynamic_sidebar('sidebar'); ?>
+        <?php get_partial('BestSellers'); ?>
       </div>
     </div>
   </div>

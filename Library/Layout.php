@@ -41,3 +41,13 @@ class Famelo_Layout {
   }
 }
 add_filter('template_include', array('Famelo_Layout', 'apply'), 99);
+
+
+function get_partial($name, $context = array()) {
+  // $htmlTemplate = locate_template('templates/Partials/' . $name . '.html');
+  // if (is_file($htmlTemplate) && file_exists($htmlTemplate)) {
+  //   Timber::$dirname = 'templates';
+  //   return Timber::render('Partials/' . $name . '.html', $context);
+  // }
+  return get_template_part('templates/Partials/' . $name);
+}

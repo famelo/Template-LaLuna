@@ -49,4 +49,38 @@
 		}
 		return $products;
 	}
+
+	class Famelo_WooCommerce {
+		public static function getBestSellers($limit = 8) {
+			global $woocommerce;
+			$query_args = array(
+				'posts_per_page' => $limit,
+				'post_status' 	 => 'publish',
+				'post_type' 	 => 'product',
+				'meta_key' 		 => 'total_sales',
+				'orderby' 		 => 'meta_value_num',
+				'no_found_rows'  => 1,
+			);
+			$query_args['meta_query'] = $woocommerce->query->get_meta_query();
+
+			$query = new WP_Query($query_args);
+			return self::convertPostsToProducts($query->get_posts());
+		}
+
+		public static function convertPostsToProducts($posts) {
+			foreach ($posts as $key => $post) {
+				$post = new WC_Product_Simple($post);
+				$posts[$key] = $post;
+			}
+			return $posts;
+		}
+
+		public static function getProductTeaser() {
+			$image = get_field('produkbilder');
+			if (isset($image[0])) {
+				return $image[0]['produktbild'];
+			}
+			return 'http://p204488.webspaceconfig.de/wp-content/themes/template/assets/Media/dummy.png';
+		}
+	}
 ?>

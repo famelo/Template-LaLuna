@@ -23,7 +23,7 @@ function famelo_config() {
   // Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
   add_theme_support('post-thumbnails');
   // set_post_thumbnail_size(150, 150, false);
-  add_image_size('category-thumbnail', 300, 190);
+  add_image_size('category-thumbnail', 300, 190, TRUE);
   add_image_size('slider-cropped', 970, 451, TRUE);
 
   add_image_size('column-4', 294, 300, TRUE);

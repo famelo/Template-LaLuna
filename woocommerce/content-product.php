@@ -28,7 +28,7 @@ if ( ! $product->is_visible() )
 $woocommerce_loop['loop']++;
 
 // Extra post classes
-$classes = array('col-md-3', 'singleproduct');
+$classes = array('col-md-3 col-sm-4 col-xs-6', 'singleproduct');
 if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] || 1 == $woocommerce_loop['columns'] )
 	$classes[] = 'first';
 if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
@@ -55,16 +55,6 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 		</div>
 		<div class="datawrapper row">
 			<div class="col-md-12"><h3><?php the_title(); ?></h3></div>
-			<div class="col-md-5 hidden price">
-				<?php
-					/**
-					 * woocommerce_after_shop_loop_item_title hook
-					 *
-					 * @hooked woocommerce_template_loop_price - 10
-					 */
-					do_action( 'woocommerce_after_shop_loop_item_title' );
-				?>
-			</div>
 		</div>
 
 	</a>

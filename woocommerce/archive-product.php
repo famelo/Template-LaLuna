@@ -43,9 +43,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <?php
   // get Category Introtext
   $catSlug = $category->description;
+  $catName = $category->name;
   $templatePath = site_url();
   $headline = get_field('ueberschrift', 'product_cat_' . $category->term_id);
-    if ($headline) {
+    if ($catSlug) {
       echo '
         <div class="catslug">
           <h2 class="dotted">
@@ -57,6 +58,16 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
           </div>
         </div>
       ';
+    }
+    else {
+      echo '
+        <div class="catslug">
+          <h2 class="dotted">
+            <span>'. $catName .'</span>
+          </h2>
+          <p class="serif">'. $catSlug .'</p>
+        </div>
+      ';      
     }
 ?>
 

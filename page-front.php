@@ -25,7 +25,7 @@
 							<img src="' . $row['bild']['sizes']['slider-cropped'] . '" alt="' . $row['headline'] . '">
 							<div class="carousel-caption">
 								<h2>' . $row['headline'] . '</h2>
-								<p>' . $row['text'] . '</p>
+								<p class="hidden-xs">' . $row['text'] . '</p>
 							</div>
 						</a>
 					</div>';
@@ -50,7 +50,7 @@
 			foreach($rows as $row) {
 				$active = get_field($slider ['aktiv'] [$key] ['kategorie'], 'product_cat');
 				echo '
-				<div class="col-md-4" >
+				<div class="col-md-4 col-sm-4" >
 					<a href="' . $row['link']. '" title="' . $row['headline'] . '" >
 						<div class="bgimage" style="background:url(' . $row['bild'] . ') repeat-x;">
 							<div class="gold">
@@ -82,7 +82,7 @@
 			$thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 			$image = wp_get_attachment_image_src($thumbnail_id, 'column-' . $col);
 			echo '
-			<div class="col-md-' . $col . '">
+			<div class="col-md-' . $col . ' col-sm-' . $col . '">
 				<a href="produktkategorie/' . $cat->slug . '" title="' . $cat->name . '" >
 					<div class="bgimage" style="background:url(' . $image[0] . ') repeat-x;">
 						<div class="gold">
@@ -102,13 +102,13 @@
 		foreach($rows as $row) {
 			if (is_array($rows)) {
 				echo '
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-3">
 					<img src="' . $row['links'] . '" alt="facebook" class="brownborder img-responsive"/>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 col-sm-6">
 					<img src="' . $row['mitte'] . '" alt="facebook" class="brownborder img-responsive"/>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-3">
 					<img src="' . $row['rechts'] . '" alt="facebook" class="brownborder img-responsive"/>
 				</div>
 				';
