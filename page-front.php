@@ -82,7 +82,7 @@
 			$thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 			$image = wp_get_attachment_image_src($thumbnail_id, 'column-' . $col);
 			echo '
-			<div class="col-md-' . $col . ' col-sm-' . $col . '">
+			<div class="col-md-' . $col . ' col-sm-' . $col . ' col-s-' . $col . '">
 				<a href="produktkategorie/' . $cat->slug . '" title="' . $cat->name . '" >
 					<div class="bgimage" style="background:url(' . $image[0] . ') repeat-x;">
 						<div class="gold">

@@ -20,7 +20,7 @@ if ( empty( $woocommerce_loop['loop'] ) )
 $woocommerce_loop['loop']++;
 ?>
 
-<div class="col-md-4 col-sm-4 col-tablet-4">
+<div class="col-md-4 col-sm-4 col-s-6">
 	<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" title="<?php echo $category->name ?>">
 		<?php
 		    $thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );

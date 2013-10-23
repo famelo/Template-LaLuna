@@ -29,12 +29,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	if (count($images) > 1) {
 		echo '
 			<div class="row productteaser hidden-xs" >
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-6 col-sm-6 col-s-6">
 					<div class="imagewrapper">
 					<img src="'. $images[0]['produktbild'] .'" class=" img-responsive" alt="'. $name .'" />
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-6 col-sm-6 col-s-6">
 					<div class="imagewrapper">
 						<img src="'. $images[1]['produktbild'] .'" class="img-responsive" alt="'. $name .'" />
 					</div>
@@ -136,19 +136,19 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				<?php $product->list_attributes(); ?>
 			</div>
 		</article>
-	
+
 	<article class="support">
 		<div class="col-md-<?php if(get_field('massanfertigung') === TRUE) { echo '5'; } else { echo '7';} ?> <?php if(get_field('massanfertigung') === TRUE) { echo 'col-sm-4'; } ?>">
 			<h3>Beratung liegt uns am Herzen</h3>
 			<?php the_field('beratung', 'option'); ?>
 		</div>
-		<?php 
-			if(get_field('massanfertigung') === TRUE) { 
+		<?php
+			if(get_field('massanfertigung') === TRUE) {
 				echo '<div class="col-md-7 col-sm-8">';
 				echo do_shortcode('[contact-form-7 id="207" title="Kontakt"]');
 				echo '</div>';
-			} 
-		?>	
+			}
+		?>
 	</article>
 </section>
 

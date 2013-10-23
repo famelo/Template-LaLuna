@@ -1,0 +1,313 @@
+/*
+	 	written by: Sven Steinker
+		Web: http://svensteinker.de , Mail: sven{at}svensteinker.de
+
+	take a look and learn, but never copy n paste!
+
+*/
+
+// mixins, functions, operations
+
+@white:		#ffffff;
+@brown:		#7f684f;
+@lbrown: 	#ecebe9;
+@lightbrown:#b9893f;
+@green: 	#55b434;
+
+@gold:		rgba (197, 191, 143, .8);
+@goldmenu2:	rgba (197, 191, 143, .9);
+@goldmenu:	rgba (236, 235, 233, .9);
+@brownmenu: rgba(130, 105, 80, 0.7);
+
+.font (@fontsize:13px) {
+	font-size: @fontsize;
+	line-height: @fontsize + 3;
+	color:@brown;
+	margin: 0px 0;
+	font-family: 'Open Sans', sans-serif, Arial;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.light {font-weight: 100;}
+.regular {font-weight: 400;}
+.bold {font-weight: 700;}
+
+.serif {
+	font-family: 'Gentium Basic' !important;
+	font-weight: 400;
+	font-style: normal;
+}
+
+
+// defaults
+	//disable RWD lg
+		@media (min-width: 1200px) {.container{width:970px!important;} }
+
+
+	body {background: @lbrown;}
+	body > .container {
+		padding: 0px;
+	}
+
+	section {margin-bottom: 50px; }
+	article {display: block; overflow: hidden;}
+
+	//fonts
+		p {.font; margin-bottom: 10px;}
+		h1, h2, h3, h4, h5, h6 {color:@brown;}
+		h2.dotted {
+			.serif;
+			text-align: center;
+			color:@brown;
+			background: url(../Media/dot.png) repeat-x scroll 0 18px;
+			font-size: 34px;
+			margin-bottom: 20px;
+				span {padding: 0 15px; background: @lbrown;}
+		}
+
+	//brown border
+		.brownborder {border: 1px solid @brown;}
+		hr {margin:0 0 5px 0px; border-top: 1px solid @lightbrown;}
+
+	//divider with ornament
+		.divider { text-align: center; margin-top:20px; margin-bottom: 20px;
+			background: url(../Media/dot.png) repeat-x scroll 0 20px;
+				img{padding: 0 10px; background: @lbrown;}
+		}
+
+	//wrapper
+		.wrapper {overflow: hidden;display: block;}
+
+//header
+	header[role=banner] {background:@brown; margin-bottom: 120px;
+		a.navbar-brand {.font(12px);color:@white;
+			&:hover {color:@white;}
+		}
+	}
+
+	//Logo
+		.logo {margin-top:10px;position: absolute; left:50%; margin-left: -101px;}
+
+	// Menu defaults
+		nav.navbar.navbar-default {background: transparent; border:0px; min-height: 20px; margin-bottom: 10px;
+			ul > li.open > a, ul > li.open > a:focus {background: transparent;color: darken(@brown, 10%); }
+			ul{
+				li {
+					a {.font;background: transparent; padding:5px 15px;}
+					ul.dropdown-menu { background: @goldmenu; border-radius: 0px; margin-top: 0px;
+						li{
+							a{.regular;
+							&:hover {background:rgba(255, 255, 255, 0.5);}
+							}
+						}
+					}
+				}
+
+			}
+		}
+	// MainMenu
+	section[role="main-navigation"] { margin-bottom: 5px;
+		nav[role=navigation]{
+			ul > li > a {color:@brown; .bold;
+							&:hover {color:lighten(@brown, 20%);}
+						}
+			ul > li.active > a {background: transparent; color:darken(@brown, 10%);
+									&:hover {background: transparent;color:lighten(@brown, 20%);}
+								}
+
+		}
+	}
+	// UserMenu
+	nav.navbar.navbar-default[role=usernavigation]{
+			ul > li > a,
+			ul > li.open > a{color: @white;.regular;
+								.caret{border-top-color:@white!important;border-bottom-color:@white!important;}
+								&:hover, &:focus {color: @white;}
+							}
+			ul{margin-top: 10px;
+				li{
+					ul.dropdown-menu > li > a {color: @brown;
+												&:hover {color:lighten(@brown, 20%);}}
+				}
+			}
+
+		}
+	// BreadcrumbMenu
+	nav.woocommerce-breadcrumb {margin-top: 10px;
+		color:@brown!important;
+		.bold;
+		a{color:@brown!important;.regular;}
+	}
+
+//frontpage
+	//section teaser
+		section.teaser{
+			.carousel-caption{left:55%; right:2%;top:5%; bottom:70%; background: @gold; text-shadow:none;text-align: left; padding: 10px;
+				h2 {.font(25px);.light;color:@white;}
+				p {.font(12px);.regular;color:@white;margin-top: 10px;}
+			}
+			img {.brownborder;}
+			.opener {margin-top: 30px;
+				.bgimage { height:190px;.brownborder;
+					.gold {margin-top: 60px;}
+				}
+			}
+		}
+	//category teaser
+		.row {
+			a { text-decoration: none; }
+			.bgimage { height:300px;.brownborder;
+				.gold {text-align: center; background: @gold; margin:220px 0 0 0; padding: 10px 0;
+					h3{margin: 0px; padding:0px;.serif;color:@white;font-size: 20px; font-weight: 100;}
+					p{color:@white; font-size: 15px;}
+				}
+			}
+		}
+		.row.opener, section.procudts > row {a {display:block;}}
+	//info
+		section.info {
+			p {.serif}
+		}
+	//section products
+		section.products {margin-bottom: 0px;}
+
+
+
+
+//footer
+	footer{text-align: center; margin-top: 50px;
+	// brownyy
+		section.brown {margin-bottom: 30px;
+			padding: 15px 0;
+			background: @brown;
+			h5, p{color: @white;.serif;}
+			p {padding:0 35px; }
+		}
+	// payment
+		section.payment {margin-bottom: 10px;
+			img {margin-bottom: 20px;}
+			p{.serif; font-size: 12px;}
+		}
+
+		.navbar-nav {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		.navbar-nav li {
+			text-align: center;
+			float: none;
+			display: inline;
+		}
+		.navbar-nav a {
+			display: inline;
+			font-family: 'Gentium Basic' !important;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 12px;
+			color: @brown;
+		}
+		.navbar-nav a:hover {
+			color: darken(@brown, 20%);
+			background: none;
+		}
+	}
+
+
+// CATEGORYPAGE
+	//images
+		//category teaser
+		.row.teaserimg {margin-bottom: 5px;}
+		.categoryteaser {
+			display: table-cell;
+			vertical-align:
+			middle;width: 970px;
+			height: 230px;
+				.gold{margin: 0 30%; text-align: center; background: @gold;
+					h1 {font(25px); .light; color:@white;}
+				}
+		}
+
+		.row.products {
+			.col-md-4 {margin-top: 30px;}
+			a { text-decoration: none; display: block;}
+			.bgimage { height:190px;.brownborder; background: url(../Media/dummy.png) repeat-x;
+				.gold {text-align: center; background: @gold; margin:80px 0 0 0; padding: 10px 0;
+					h3{margin: 0px; padding:0px;.serif;color:@white;font-size: 20px;}
+					p{color:@white; font-size: 15px;}
+				}
+			}
+		}
+
+		//slug teaser
+			.catslug {
+				p {font(16px);}
+			}
+
+// PRODUCTPAGE
+	//single row
+		.row.products{
+			.singleproduct{
+				text-align: center;
+				a {
+					.imgwrapper {display: table-cell; vertical-align: middle; height:190px;text-align: center; border-bottom: 3px solid @gold; padding-bottom: 5px;}
+					.datawrapper {margin-top: 10px;
+						h3{.font(16px); text-align: left;}
+						div.price {text-align: right;}
+						.woocommerce-de_price_taxrate {display: none;}
+					}
+				}
+			}
+		}
+	//single product
+	div.productteaser {
+		.imagewrapper {height:340px; display: table-cell; vertical-align: middle;}
+	}
+	section.product {
+		h2 {.serif; margin-bottom: 0px;}
+		.subline {.serif; margin-bottom: 20px; font-size: 14px; font-weight: 600;}
+		.content p {color: #716e69;}
+		h3 {font(20px); border-bottom: 1px solid @brown; font-weight: 200; }
+		.pricebox{
+			height: 50px; padding: 0 40px; float: left; background: @brown; color: @white; margin-right: 2px;
+			p.price > span {color:@white;.light; margin: 0;}
+			span.amount {font-size: 20px; text-align: center; display: block; margin-bottom: 10px;}
+			.woocommerce-de_price_taxrate {font-size:10px;.light; color:@white; text-align: center; display: block;}
+		}
+		.addcart {float: left; margin-right: 2px;}
+		.addtocart { margin-top: 40px; text-align: center; }
+		.addtocart form { display: inline-block; }
+		.addtocart .addcart .single_add_to_cart_button { background: @green; height: 50px; border: none; color: white; padding: 0 40px; font-size: 24px; font-weight: lighter;}
+		.woocommerce-page .quantity input.qty { height: 50px; }
+	}
+	.woocommerce-page div.product form.cart div.quantity {
+		margin-right: 2px;
+	}
+	.woocommerce .quantity .minus,
+	.woocommerce .quantity .plus { height: 25px; font-size: 20px; outline: none; border-radius: 0; border: none;}
+	.woocommerce .quantity input.qty { height: 50px; border: none; font-size: 20px; }
+
+		article.additionalinformation{margin-top: 50px;}
+
+//devcenter
+section.products{
+	div.test {.brownborder;height:250px; }
+	.row {margin-bottom: 25px;}
+}
+
+.woocommerce-message {
+	border-top: 0;
+	padding: 10px;
+}
+.woocommerce-message:before {
+	background: none;
+	content: none;
+}
+
+.woocommerce table.shop_table {
+	margin-top: 20px;
+	thead { background: @brown; color: white; }
+	th, td { border: none; }
+	.jde_hint td { background: #f9f9f9; border-top: 1px solid rgba(0,0,0,0.1);}
+	tr.actions td { background: #f9f9f9; }
+}
