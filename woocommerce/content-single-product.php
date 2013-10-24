@@ -102,6 +102,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 						</form>
 					</div>
 				</article>
+				<?php Famelo_Social::facebookLike(); ?>
 				<?php
 					/**
 					 * woocommerce_single_product_summary hook

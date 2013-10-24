@@ -96,7 +96,7 @@
 		echo '</div>';
 	}
 	?>
-	<div class="row">
+	<div class="row hidden">
 		<?php
 		$rows = get_field('drei');
 		foreach($rows as $row) {

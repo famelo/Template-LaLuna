@@ -26,9 +26,7 @@ class Famelo_Layout {
 
   static function getLayoutName($templatePath) {
     if (file_exists($templatePath)) {
-      $template = file_get_contents($templatePath);
-
-      $configuration = array('Remove' => '');
+      $configuration = array('Layout' => '');
       $headers = array_keys($configuration);
       foreach (get_file_data($templatePath, array('Layout')) as $layoutName) {
         if (strlen($layoutName) > 0) {
