@@ -77,7 +77,10 @@
 		.wrapper {overflow: hidden;display: block;}
 
 //header
-	header[role=banner] {background:@brown; margin-bottom: 120px;
+	header[role=banner] {
+		background:@brown; margin-bottom: 120px;
+		z-index: 10000;
+		position: relative;
 		a.navbar-brand {.font(12px);color:@white;
 			&:hover {color:@white;}
 		}
@@ -257,10 +260,10 @@
 // PRODUCTPAGE
 	//single row
 		.row.products{
-			.singleproduct{ height:240px;
+			.singleproduct{ height:220px;
 				text-align: center;
 				a {
-					.imgwrapper {display: table-cell; vertical-align: middle; height:190px;text-align: center; border-bottom: 3px solid @gold; padding-bottom: 5px;}
+					.imgwrapper {vertical-align: middle; height:160px;text-align: center; border-bottom: 3px solid @gold; padding-bottom: 5px;}
 					.datawrapper {margin-top: 10px;
 						h3{.font(14px); text-align: left;}
 						div.price {text-align: right;}

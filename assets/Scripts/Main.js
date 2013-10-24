@@ -15,4 +15,19 @@
     $(document).ready(function() {
 
 	});
+
+	window.onresize = function(){
+		var agent = navigator.userAgent;
+		var current_width = window.innerWidth;
+		var html = document.getElementsByTagName('html')[0];
+		if (agent.match(/MSIE 8/i)) {
+			html.className = "ie8";
+		} else if (agent.match(/MSIE 9/i)) {
+			html.className = "ie9";
+		} else if (agent.match(/MSIE 10/i)) {
+			html.className = "ie10";
+		} else if (agent.match(/MSIE 11/i)) {
+			html.className = "ie11";
+		}
+		}();
 })(jQuery);
